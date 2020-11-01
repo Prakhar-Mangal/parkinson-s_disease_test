@@ -31,14 +31,13 @@ function savecvs() {
 
 function check() {
     httpPost(
-        "http://3.85.233.38:5000/get/eight",
+        "http://server1.cbkm.in:5000/get/eight",
         "json", { data: mycnvs.canvas.toDataURL() },
         (res) => {
-            document.getElementById("output").innerHTML = `Parkinson's :- ${
-        res.p * 100
-      } %<br/>
+            document.getElementById("output").innerHTML = `Parkinson's :- ${res.p * 100
+                } %<br/>
       Non-Parkinson's :- ${res.np * 100} %`;
-      generateChart(res.p*100,res.np*100)
+            generateChart(res.p * 100, res.np * 100)
         }
     );
 }
