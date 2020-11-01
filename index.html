@@ -14,15 +14,63 @@
   <link rel="stylesheet" href="./style.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
   <title>Detection</title>
+  <style>
+    .lds-hourglass {
+      display: inline-block;
+      position: relative;
+      width: 80px;
+      height: 80px;
+    }
+
+    .lds-hourglass:after {
+      content: " ";
+      display: block;
+      border-radius: 50%;
+      width: 0;
+      height: 0;
+      margin: 8px;
+      box-sizing: border-box;
+      border: 32px solid rgb(119, 33, 33);
+      border-color: rgb(255, 0, 191) transparent rgb(255, 255, 255) transparent;
+      animation: lds-hourglass 1.2s infinite;
+    }
+
+    @keyframes lds-hourglass {
+      0% {
+        transform: rotate(0);
+        animation-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+      }
+
+      50% {
+        transform: rotate(900deg);
+        animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+      }
+
+      100% {
+        transform: rotate(1800deg);
+      }
+    }
+  </style>
 </head>
 
 <body>
   <div class="container">
-    <div class="row mt-3">
-      <div class="col">
-        <div id="canva"></div>
+    <div class="row border border-primary mt-2">
+      <h2 class="mx-auto" style="color:blue">Parkinson Disease Detection</h2>
+    </div>
+    <div class="row my-2">
+      <div class="col md-6 border border-warning">Developed By: </div>
+      <div class="col md-6 border border-warning">Sakshi Somani</div>
+      <div class="col md-6 border border-warning">Samrat Seth</div>
+      <div class="col md-6 border border-warning">Ram Rodwal</div>
+    </div>
+    <div class="row border border-success my-2">
+      <div class="col md-6 border border-success">
+        <center>
+          <div id="canva"></div>
+        </center>
       </div>
-      <div class="col">
+      <div class="col md-6 border border-success">
         <canvas id="oilChart" width="400" height="300"></canvas>
       </div>
 
@@ -30,12 +78,43 @@
     <!-- <button onclick="savecvs()">Save</button>
     <button onclick="check()">Check</button>
     <button onclick="clearAll()">Clear</button> -->
-    <button type="button" onclick="savecvs()" class="btn btn-outline-primary">Save</button>
-    <button type="button" onclick="check()" class="btn btn-outline-success">Check</button>
-    <button type="button" onclick="clearAll()" class="btn btn-outline-danger">Clear</button>
-    <div id="output">
-
+    <div class="row" id="all-button">
+      <button type="button" onclick="savecvs()" class="btn btn-outline-primary">Save</button>&nbsp;&nbsp;
+      <button type="button" onclick="check()" class="btn btn-outline-success">Check</button>&nbsp;&nbsp;
+      <button type="button" onclick="clearAll()" class="btn btn-outline-danger">Clear</button>
     </div>
+
+    <div class="row my-2">
+      <div class="col md-6 border border-danger" id="pname">Patient Name</div>
+      <div class="col md-6 border border-danger" id="pid">Patient ID</div>
+    </div>
+    <div class="my-2">
+      <table class="table table-striped table-dark" id="myTable">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Parkinson</th>
+            <th scope="col">Non Parkinson</th>
+            <th scope="col">Result</th>
+          </tr>
+        </thead>
+        <tbody id="output">
+
+        </tbody>
+      </table>
+      <div class="row" id="export">
+
+      </div>
+    </div>
+    <div class="row border border-primary mt-2">
+      <h2 class="mx-auto" style="color:blue" id="attempt">Final Result, Attempt Remaining: 5</h2>
+    </div>
+    <div class="row my-2">
+      <div class="chart-container" style="position: relative; height:40vh; width:80vw">
+        <canvas id="result-chart"></canvas>
+      </div>
+    </div>
+
 
   </div>
 

@@ -30,16 +30,19 @@ function savecvs() {
 }
 
 function check() {
+    document.getElementById('all-button').innerHTML = `<div class="lds-hourglass"></div>`
     httpPost(
         "http://server1.cbkm.in:5000/get/eight",
         "json", { data: mycnvs.canvas.toDataURL() },
         (res) => {
-            document.getElementById("output").innerHTML = `Parkinson's :- ${res.p * 100
-                } %<br/>
-      Non-Parkinson's :- ${res.np * 100} %`;
-            generateChart(res.p * 100, res.np * 100)
+            document.getElementById('all-button').innerHTML = ` <button type="button" onclick="savecvs()" class="btn btn-outline-primary">Save</button>&nbsp;&nbsp;
+            <button type="button" onclick="check()" class="btn btn-outline-success">Check</button>&nbsp;&nbsp;
+            <button type="button" onclick="clearAll()" class="btn btn-outline-danger">Clear</button>`;
+            generateChart(parseFloat((res.p * 100).toFixed(3)), parseFloat((res.np * 100).toFixed(3)));
+
         }
     );
+
 }
 
 function clearAll() {
