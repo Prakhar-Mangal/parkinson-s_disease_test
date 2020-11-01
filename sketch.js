@@ -32,7 +32,7 @@ function savecvs() {
 function check() {
     document.getElementById('all-button').innerHTML = `<div class="lds-hourglass"></div>`
     httpPost(
-        "http://server1.cbkm.in:5000/get/eight",
+        "http://54.242.157.91:5000/get/eight",
         "json", { data: mycnvs.canvas.toDataURL() },
         (res) => {
             document.getElementById('all-button').innerHTML = ` <button type="button" onclick="savecvs()" class="btn btn-outline-primary">Save</button>&nbsp;&nbsp;
